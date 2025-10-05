@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Favorite Travel Destinations</title>
+</head>
+
+<body>
+    <header>
+        <h1>My Favorite Travel Destinations</h1>
+        <nav>
+            <a href="https://www.lonelyplanet.com" target="_blank">Visit Lonely Planet</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Top 3 Places I Love</h2>
+            <ul>
+                <li>Kyoto, Japan</li>
+                <li>Paris, France</li>
+                <li>New York City, USA</li>
+            </ul>
+
+            <figure>
+                <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg"
+                    alt="Kiyomizu-dera Temple in Kyoto, Japan" width="300">
+                <figcaption>Kiyomizu-dera Temple, Kyoto</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg"
+                    alt="Eiffel Tower in Paris, France" width="300">
+                <figcaption>Eiffel Tower, Paris</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg"
+                    alt="Manhattan skyline at sunset, New York City" width="300">
+                <figcaption>Manhattan Skyline, New York</figcaption>
+            </figure>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created by Phạm Việt Khoa | © 2025</p>
+    </footer>
+</body>
+
+</html>
