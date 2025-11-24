@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Accessible Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* 1. SKIP TO MAIN CONTENT LINK */
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 10px;
+      background: #000;
+      color: #fff;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      z-index: 1000;
+      transition: top 0.3s ease;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+      outline: 3px solid #ffd700;
+      outline-offset: 2px;
+    }
+
+    /* 2. ACCESSIBLE NAVIGATION - Sử dụng FLEXBOX */
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    nav[role="navigation"] ul {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+    }
+
+    nav[role="navigation"] a {
+      display: block;
+      text-decoration: none;
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav[role="navigation"] a::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 80%;
+      height: 2px;
+      background: #ffd700;
+      transition: transform 0.3s ease;
+    }
+
+    nav[role="navigation"] a:hover::after,
+    nav[role="navigation"] a:focus::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    nav[role="navigation"] a:hover,
+    nav[role="navigation"] a:focus {
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+
+    nav[role="navigation"] a:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);
+    }
+
+    nav[role="navigation"] a[aria-current="page"] {
+      background: rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+    }
+
+    /* 3. MAIN CONTENT - Sử dụng BOX MODEL */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .hero {
+      /* Box Model Example */
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 4rem 3rem; /* Padding bên trong */
+      margin-bottom: 3rem; /* Margin bên ngoài */
+      border-radius: 12px; /* Bo góc border */
+      border: 3px solid #667eea; /* Border */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #667eea;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* 4. GRID LAYOUT cho Cards */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      /* Box Model cho Card */
+      background: white;
+      padding: 2rem; /* Padding */
+      border-radius: 10px; /* Border radius */
+      border: 1px solid #e0e0e0; /* Border */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Shadow như một phần của box model */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      color: #667eea;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.8;
+    }
+
+    /* FLEXBOX cho Content Section */
+    .content-section {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    .content-section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .content-text {
+      flex: 1;
+    }
+
+    .content-text h2 {
+      color: #667eea;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .content-image {
+      flex: 1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 250px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+    }
+
+    /* FOOTER với GRID */
+    footer {
+      background: #2c3e50;
+      color: white;
+      padding: 3rem 2rem 1rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      color: #ffd700;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section a {
+      color: #ecf0f1;
+      text-decoration: none;
+      display: block;
+      padding: 0.3rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover,
+    .footer-section a:focus {
+      color: #ffd700;
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav[role="navigation"] ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .content-section,
+      .content-section:nth-child(even) {
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 1. SKIP TO MAIN CONTENT LINK -->
+  <a href="#main-content" class="skip-link">Bỏ qua đến nội dung chính</a>
+
+  <!-- 2. ACCESSIBLE NAVIGATION -->
+  <header>
+    <div class="header-container">
+      <div class="logo">🌟 MyWebsite</div>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" aria-current="page">Trang chủ</a></li>
+          <li><a href="#features">Tính năng</a></li>
+          <li><a href="#about">Giới thiệu</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" tabindex="-1">
+    <!-- HERO SECTION - Box Model Demo -->
+    <section class="hero">
+      <h1>Chào mừng đến với Website Accessible</h1>
+      <p>Demo về Skip Link, Navigation dễ tiếp cận, Grid, Flexbox và Box Model</p>
+    </section>
+
+    <!-- FEATURES GRID - Grid Layout Demo -->
+    <section id="features">
+      <h2 style="text-align: center; margin-bottom: 2rem; color: #667eea; font-size: 2rem;">Các Tính Năng Nổi Bật</h2>
+      <div class="features">
+        <article class="card">
+          <div class="card-icon">♿</div>
+          <h3>Accessibility</h3>
+          <p>Website được thiết kế với khả năng tiếp cận tốt, hỗ trợ người dùng screen reader và bàn phím.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">📱</div>
+          <h3>Responsive</h3>
+          <p>Giao diện tự động điều chỉnh trên mọi thiết bị từ desktop đến mobile.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🎨</div>
+          <h3>Modern Design</h3>
+          <p>Thiết kế hiện đại với gradient đẹp mắt và animation mượt mà.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Performance</h3>
+          <p>Tối ưu hóa hiệu suất tải trang nhanh chóng và mượt mà.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Security</h3>
+          <p>Bảo mật tốt với các tiêu chuẩn web hiện đại.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">💡</div>
+          <h3>Best Practices</h3>
+          <p>Tuân thủ các best practices về HTML semantics và CSS.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTENT SECTIONS - Flexbox Demo -->
+    <section id="about">
+      <div class="content-section">
+        <div class="content-text">
+          <h2>Box Model & Flexbox</h2>
+          <p>Section này sử dụng Flexbox để sắp xếp nội dung và hình ảnh. Box model được áp dụng với padding, border, và margin để tạo khoảng cách hợp lý.</p>
+          <p>Flexbox giúp căn chỉnh dễ dàng và responsive tự nhiên.</p>
+        </div>
+        <div class="content-image">📦</div>
+      </div>
+
+      <div class="content-section">
+        <div class="content-text">
+          <h2>Grid Layout System</h2>
+          <p>Phần cards ở trên sử dụng CSS Grid với grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) để tự động responsive.</p>
+          <p>Grid rất mạnh cho layout 2 chiều và tự động sắp xếp items.</p>
+        </div>
+        <div class="content-image">🎯</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER với Grid -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Về chúng tôi</h3>
+        <ul>
+          <li><a href="#company">Công ty</a></li>
+          <li><a href="#team">Đội ngũ</a></li>
+          <li><a href="#careers">Tuyển dụng</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Sản phẩm</h3>
+        <ul>
+          <li><a href="#features">Tính năng</a></li>
+          <li><a href="#pricing">Bảng giá</a></li>
+          <li><a href="#testimonials">Đánh giá</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Hỗ trợ</h3>
+        <ul>
+          <li><a href="#help">Trung tâm trợ giúp</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Pháp lý</h3>
+        <ul>
+          <li><a href="#privacy">Chính sách bảo mật</a></li>
+          <li><a href="#terms">Điều khoản sử dụng</a></li>
+          <li><a href="#cookies">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 MyWebsite. All rights reserved. Made with ❤️</p>
+    </div>
+  </footer>
+</body>
+</html>
