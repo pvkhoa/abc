@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietnamese Cuisine Gallery</title>
+  <style>
+/* ===============================
+   MOBILE FIRST - DEFAULT STYLES
+   =============================== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 5px;
+    margin: 15px;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.95em;
+    color: #2c3e50;
+}
+
+h2 {
+    text-align: center;
+    color: #34495e;
+}
+
+p {
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+li {
+    margin-top: 20px;
+}
+
+/* MOBILE GRID - 1 COLUMN */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+figure {
+    border: 5px solid #3498db;
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+figcaption {
+    margin-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2em;
+    color: #2c3e50;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+footer a:hover,
+footer a:focus {
+    background-color: #3498db;
+    color: white;
+}
+
+/* ===============================
+   TABLET VIEW - 772px
+   =============================== */
+@media screen and (min-width: 772px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    figure {
+        border-radius: 50%;
+    }
+    
+    /* Last figure spans both columns */
+    figure:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ===============================
+   LARGE SCREEN VIEW - 992px
+   =============================== */
+@media screen and (min-width: 992px) {
+    /* Every third figure spans both columns */
+    figure:nth-child(3n) {
+        grid-column: 1 / -1;
+    }
+    
+    /* Remove border radius from all figures */
+    figure {
+        border-radius: 0;
+    }
+}
+
+/* ===============================
+   REDUCED MOTION PREFERENCE
+   =============================== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===============================
+   DARK MODE PREFERENCE
+   =============================== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    h1, h2 {
+        color: #f0db4f;
+    }
+    
+    figure {
+        background-color: #2c2c2c;
+        border-color: #000000;
+    }
+    
+    figcaption {
+        color: #f0db4f;
+    }
+    
+    footer a {
+        color: #f0db4f;
+        border-color: #f0db4f;
+    }
+    
+    footer a:hover,
+    footer a:focus {
+        background-color: #f0db4f;
+        color: #1a1a1a;
+    }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="top">Vietnamese Cuisine Gallery</h1>
+  </header>
+  <main>
+    <p>Welcome to my Vietnamese Cuisine Gallery! This collection showcases some of the most beloved dishes from Vietnam. Each dish represents the rich culinary heritage and diverse flavors that make Vietnamese food unique and delicious. From the iconic pho to the crispy banh mi, these dishes tell the story of Vietnam's vibrant food culture.</p>
+    
+    <p>Vietnamese cuisine is known for its fresh ingredients, balanced flavors, and healthy cooking methods. The food emphasizes harmony between sweet, sour, salty, bitter, and spicy tastes. Fresh herbs, rice, fish sauce, and lime are staples that appear throughout Vietnamese cooking, creating dishes that are both flavorful and nutritious.</p>
+    
+    <div class="grid">
+        <figure>
+            <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=400" alt="A steaming bowl of traditional Vietnamese pho with rice noodles, beef slices, and fresh herbs">
+            <figcaption>Phở - Vietnamese Noodle Soup</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1591814913523-fcc2d88bfcde?w=400" alt="Fresh Vietnamese spring rolls with shrimp, vegetables, and rice paper wrapper">
+            <figcaption>Gỏi Cuốn - Fresh Spring Rolls</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1592415486689-125cbbfcbee2?w=400" alt="Crispy Vietnamese banh mi sandwich with pate, pickled vegetables, and cilantro">
+            <figcaption>Bánh Mì - Vietnamese Sandwich</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=400" alt="Bowl of bun cha with grilled pork, rice noodles, and dipping sauce">
+            <figcaption>Bún Chả - Grilled Pork with Noodles</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400" alt="Plate of crispy fried Vietnamese egg rolls with vegetables">
+            <figcaption>Chả Giò - Fried Spring Rolls</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400" alt="Bowl of cao lau noodles with pork and greens from Hoi An">
+            <figcaption>Cao Lầu - Hoi An Noodles</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400" alt="Vietnamese banh xeo crispy pancake with bean sprouts and shrimp">
+            <figcaption>Bánh Xèo - Crispy Pancake</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400" alt="Bowl of com tam broken rice with grilled pork chop and fish sauce">
+            <figcaption>Cơm Tấm - Broken Rice</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400" alt="Glass of Vietnamese iced coffee with condensed milk">
+            <figcaption>Cà Phê Sữa Đá - Iced Coffee</figcaption>
+        </figure>
+    </div>
+  </main>
+  <footer>
+    <a href="#top">Jump to the Top</a>
+  </footer>
+</body>
+</html>
